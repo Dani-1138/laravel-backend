@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers\Post;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Post;
+
+class UserPostController extends Controller
+{
+    public function index()
+    {
+
+    }
+
+    public function create(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required'
+            
+        ]);
+        if($validator->fails())
+        {
+            return respose()->json([
+                'status'=>'422',
+                'error'=> $validator->errors()
+            ]);
+        }else{
+            $model = new Post();
+            $model -> title = $request->title;
+            $model -> description = $request -> description;
+            $model -> save();
+            return response()->json([
+                'status' => '200',
+                'msg' => 'Post add successfully'
+            ]);
+        }
+    }
+}
