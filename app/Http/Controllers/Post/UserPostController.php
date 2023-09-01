@@ -13,17 +13,22 @@ class UserPostController extends Controller
     {
 
     }
+    public function getNotification()
+    {
+        $post = Post::all();
+        return response()->json($post);
+    }
 
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'title' => 'required',
             'description' => 'required'
             
         ]);
         if($validator->fails())
         {
-            return respose()->json([
+            return response()->json([
                 'status'=>'422',
                 'error'=> $validator->errors()
             ]);

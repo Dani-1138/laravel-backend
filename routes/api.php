@@ -9,6 +9,7 @@ use App\Http\Controllers\User\UserAuthController;
 use App\Http\Controllers\User\UserLoginController;
 use App\Http\Controllers\Complain\ComplainController;
 use App\Http\Controllers\Status\StatusController;
+use App\Http\Controllers\Post\UserPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/createpost',[UserPostController::class, 'create']);
+Route::get('/get-notification',[UserPostController::class, 'getNotification']);
 Route::post('/addStudent',[StudentController::class, 'create']);
 Route::get('/getstudent', [StudentController::class, 'getStudents']);
 Route::get('/get-student/{id}', [StudentController::class, 'getStudent']);
