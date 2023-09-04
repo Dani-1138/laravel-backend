@@ -28,18 +28,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/createpost',[UserPostController::class, 'create']);
 Route::get('/get-notification',[UserPostController::class, 'getNotification']);
+Route::post('/deletepost/{id}', [UserPostController::class, 'deleteNotification']);
 Route::post('/addStudent',[StudentController::class, 'create']);
 Route::get('/getstudent', [StudentController::class, 'getStudents']);
 Route::get('/get-student/{id}', [StudentController::class, 'getStudent']);
 Route::put('/updatestudent/{id}', [StudentController::class, 'updateStudent']);
-Route::delete('/deletestudent/{id}', [StudentController::class, 'deleteStudent']);
+Route::post('/deletestudent/{id}', [StudentController::class, 'deleteStudent']);
 Route::put('/updateCOC/{id}', [StudentController::class, 'updateStudentCOC']);
 Route::put('/students/{id}', [StudentController::class, 'updateStudentCOC']);
 Route::put('/students/{id}', [StudentController::class, 'updateDepartment']);
 
 Route::put('/update-department/{id}', [StudentController::class, 'updateStudentDepartment']);
 
-Route::get('/login', [UserLoginController::class, 'authenticate']);
+Route::post('/login', [UserLoginController::class, 'authenticate']);
 
 //user
 Route::post('/addUser',[UserLoginController::class, 'create']);

@@ -19,6 +19,12 @@ class UserPostController extends Controller
         return response()->json($post);
     }
 
+    public function deleteNotification($id)
+    {
+        $student = Post::findOrFail($id);
+        $student->delete();
+        return response()->json($student);
+    }
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
