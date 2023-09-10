@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class UsersImport implements ToModel, WithHeadingRow, WithHeadings
+class UsersImport implements ToModel, WithHeadingRow,WithHeadings
 {
     /**
     * @param array $row
@@ -26,5 +26,20 @@ class UsersImport implements ToModel, WithHeadingRow, WithHeadings
             "correct" => $row['correct'],
             "year" => 2012,
         ]);
+    }
+    public function headings(): array
+    {
+        // Define the column headings here
+        return [
+            'question',
+            'optionA',
+            'optionB',
+            'optionC',
+            'optionD',
+            'optionE',
+            'correct',
+            'year'
+            // Add more headings as needed
+        ];
     }
 }

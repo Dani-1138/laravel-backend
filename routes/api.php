@@ -53,7 +53,7 @@ Route::delete('/deleteuser/{id}', [UserLoginController::class, 'deleteUser']);
 Route::post('/addDepartment',[DepartmentController::class, 'create']);
 Route::get('/getdepartment', [DepartmentController::class, 'getDepartments']);
 Route::get('/singledept/{id}', [DepartmentController::class, 'getDepartment']);
-Route::post('/updatedepartment/{id}', [DepartmentController::class, 'updateDepartment']);
+Route::put('/updatedepartment/{id}', [DepartmentController::class, 'updateDepartment']);
 Route::delete('/deletedepartment/{id}', [DepartmentController::class, 'deleteDepartment']);
 
 //exam

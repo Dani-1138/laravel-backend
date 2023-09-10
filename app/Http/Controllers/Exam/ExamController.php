@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ExamImport;
 use App\Models\Exam;
 use App\Imports\ExcelImport;
 use App\Imports\UsersImport;
@@ -20,14 +21,23 @@ class ExamController extends Controller
     public function upload(Request $request)
     {
         if ($request->hasFile('file')) {
+            // try {
+            //     $file = $request->file('file');
+            //     $import = new UsersImport(); // Create an instance of your import class
+            //     Excel::import($import, $file); // Use the import instance
+    
+            //     return response()->json(['message' => 'File uploaded and data imported successfully.']);
+            // } catch (Exception $e) {
+            //     return response()->json($e);
+            // }
             try {
                 $file = $request->file('file');
-                $import = new UsersImport(); // Create an instance of your import class
-                Excel::import($import, $file); // Use the import instance
+    
+                Excel::import(new ExamImport, $file); // Use the import class
     
                 return response()->json(['message' => 'File uploaded and data imported successfully.']);
-            } catch (Exception $e) {
-                return response()->json($e);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Error importing data.', 'error' => $e->getMessage()]);
             }
         } else {
             return response()->json(['message' => 'No file uploaded.']);
