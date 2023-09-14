@@ -31,7 +31,7 @@ class UserLoginController extends Controller
         return response()->json($user);
 
     } else {
-        return response()->json('user not found');
+        return null;
     }
 }
 
@@ -56,14 +56,14 @@ class UserLoginController extends Controller
 
     public function updateUser(Request $request, $id)
     {
-        $model = People::findOrFail($id);
-        $model -> user_id = $request->user_id;
-        $model -> firstname = $request -> firstName;
-        $model -> middleName = $request -> middleName;
-        $model -> lastName = $request -> lastName;
-        $model -> email = $request -> email;
-        $model -> password = $request -> password;
-        $model -> role = $request -> role;
+        $model = People::where('user_id', $id)->first();
+        // $model -> user_id = $request->user_id;
+        // $model -> firstname = $request -> firstName;
+        // $model -> middleName = $request -> middleName;
+        // $model -> lastName = $request -> lastName;
+        // $model -> email = $request -> email;
+        $model -> password = Hash::make($request -> password);
+        // $model -> role = $request -> role;
 
         $model->save();
         return response()->json($request);
@@ -84,8 +84,6 @@ class UserLoginController extends Controller
             'middleName' => 'required',
             'lastName' => 'required',
             'password' => 'required',
-       
-            
         ]);
         if($validator->fails())
         {

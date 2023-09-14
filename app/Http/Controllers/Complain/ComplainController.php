@@ -28,7 +28,7 @@ class ComplainController extends Controller
 
     public function updateComplain(Request $request, $id)
     {
-        $model = Complain::where('student_id', $id)->first();
+        $model = Complain::where('id', $id)->first();
         $model -> student_id = $request->student_id;
         $model -> student_first_name = $request -> student_first_name;
         $model -> student_middle_name = $request -> student_middle_name;
@@ -43,11 +43,11 @@ class ComplainController extends Controller
     public function updateComplainResponse(Request $request, $id)
     {
         // Find the student by student_id
-        $complain = Complain::where('student_id', $id)->first();
+        $complain = Complain::where('id', $id)->first();
     
         if (!$complain) {
             // Return an error response if the student is not found
-            return response()->json(['error' => 'Student not found'], 404);
+            return response()->json(['error' => 'Complain not found'], 404);
         }
     
         // Update the student's chosen_department

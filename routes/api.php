@@ -46,7 +46,7 @@ Route::post('/login', [UserLoginController::class, 'authenticate']);
 Route::post('/addUser',[UserLoginController::class, 'create']);
 Route::get('/getuser', [UserLoginController::class, 'getusers']);
 Route::get('/singleuser/{id}', [UserLoginController::class, 'getUser']);
-Route::post('/updateuser/{id}', [UserLoginController::class, 'updateUser']);
+Route::put('/updateuser/{id}', [UserLoginController::class, 'updateUser']);
 Route::delete('/deleteuser/{id}', [UserLoginController::class, 'deleteUser']);
 
 // department
@@ -67,7 +67,7 @@ Route::delete('/deleteexam/{id}', [ExamController::class, 'deleteExam']);
 Route::post('/addComplain',[ComplainController::class, 'create']);
 Route::get('/getcomplain', [ComplainController::class, 'getComplains']);
 Route::get('/get-complain/{id}', [ComplainController::class, 'getComplain']);
-Route::post('/updatecomplain/{id}', [ComplainController::class, 'updateCompalin']);
+Route::put('/updatecomplain/{id}', [ComplainController::class, 'updateComplainResponse']);
 Route::delete('/deletestudent/{id}', [ComplainController::class, 'deleteComplain']);
 
 Route::put('/complain/{id}', [ComplainController::class, 'updateComplainResponse']);

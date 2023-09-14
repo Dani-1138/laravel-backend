@@ -45,6 +45,7 @@ class StudentController extends Controller
         $model -> department = $request -> department;
         $model -> batch = $request -> batch;
         $model -> status = $request -> status;
+        $model -> total_point = $request ->entranceResult + $request -> cgpa + $request -> cocResult;
         $model->save();
         return response()->json($request);
     }
@@ -61,6 +62,7 @@ class StudentController extends Controller
     
         // Update the student's coc
         $student->cocResult = $request->input('result');
+        $student -> total_point = $student ->entranceResult + $student -> cgpa + $request->input('result');
         $student->save();
     
         return response()->json(['message' => 'Result set successfully']);
