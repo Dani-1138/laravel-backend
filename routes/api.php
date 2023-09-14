@@ -48,7 +48,7 @@ Route::get('/getuser', [UserLoginController::class, 'getusers']);
 Route::get('/singleuser/{id}', [UserLoginController::class, 'getUser']);
 Route::put('/updateuser/{id}', [UserLoginController::class, 'updateUser']);
 Route::delete('/deleteuser/{id}', [UserLoginController::class, 'deleteUser']);
-
+Route::post('/change', [UserLoginController::class, 'changePassword']);
 // department
 Route::post('/addDepartment',[DepartmentController::class, 'create']);
 Route::get('/getdepartment', [DepartmentController::class, 'getDepartments']);

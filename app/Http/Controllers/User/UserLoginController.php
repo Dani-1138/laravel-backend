@@ -29,9 +29,20 @@ class UserLoginController extends Controller
     // Check if the user exists and the password matches
     if ($user && Hash::check($request->input('password'), $user->password)) {
         return response()->json($user);
-
     } else {
         return null;
+    }
+}
+public function changePassword(Request $request)
+{
+    // Retrieve user by email
+    $user = People::where('user_id', $request->input('user_id'))->first();
+
+    // Check if the user exists and the password matches
+    if ($user && Hash::check($request->input('password'), $user->password)) {
+        return true;
+    } else {
+        return false;
     }
 }
 
